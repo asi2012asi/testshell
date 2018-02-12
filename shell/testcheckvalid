@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# test menu
+clear
+echo "
+please select:
+
+1. Display system info
+2. Display disk space
+3. Display Home space utilization
+Q. Quit
+
+"
+read -p "Enter selection[0-3] > "
+echo "replay = $REPLY"
+if [[ $REPLY=~^[1-3]$ ]]; then
+  if [[ $REPLY == 1 ]]; then
+    echo "Host name is $HOSTNAME"
+    exit #statements
+  fi
+  if [[ $REPLY == 2 ]]; then
+    echo -e "disk space:\n"
+    df -h
+    exit #statements
+  fi
+  if [[ $REPLY == 3 ]]; then
+    du -sh /home
+    exit #statements
+  fi #statements
+else
+  echo "invalid entry! " >&2
+  exit 1 #statements
+fi

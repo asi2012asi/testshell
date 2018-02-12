@@ -1,0 +1,117 @@
+#!/bin/bash -x
+
+# 测试更加完整的位置参数指令 使用shift移位 while循环 case判断
+
+PROGNAME=$(basename $0)
+TITLE="system info report for $USERNAME"
+CURRENT_TIME=$(date +"%x %r %z")
+TIME_STAMP="generate $CURRENT_TIME by $USER"
+
+report_uptime(){
+  cat << _EOF_
+
+  system uptime : $(uptime)
+_EOF_
+return
+}
+
+report_disk_space(){
+  cat << _EOF_
+
+  disk space :
+  $(df -h)
+_EOF_
+return
+
+}
+
+report_home_space(){
+  cat << _EOF_
+
+  home space :
+  $(du -sh ~/shell)
+_EOF_
+return
+}
+
+usage(){
+  echo "\n$PROGNAME: usage : $PROGNAME [-f file] [ -i]"
+  return
+}
+
+write_page(){
+  cat << _EOF_
+  $TITLE
+  $TIME_STAMP
+  $(report_uptime)
+  $(report_disk_space)
+  $(report_home_space)
+_EOF_
+return
+}
+
+interactive=
+filename=
+
+while [[ -n $1 ]]; do
+    case $1 in
+      -f | --file )
+      shift
+      filename=$1
+        ;;
+      -i | --interactive )
+      interactive=1
+        ;;
+      -h | --help )
+      usage
+      exit
+      ;;
+      * )
+      usage >&2
+      ;;
+    esac
+    shift
+done
+
+# interactive mode
+if [[ -n $interactive ]]; then
+  while true; do
+    read -p "enter name of output file : " filename
+    if [[ -e $filename ]]; then
+      read -p "'$filename' exists. Overwrite? [y/n/q] : "
+      case $REPLY in
+        Y|y )
+        echo "has Overwrited this file '$filename'"
+        break
+          ;;
+        Q|q )
+        echo "program exit"
+        exit
+          ;;
+          * )
+          continue
+          ;;
+
+      esac
+    else
+      echo "$filename not exists ,begin to create it"
+      break
+    fi
+
+  done
+fi
+
+
+# output file text
+echo "begin to write file"
+
+if [[ -n $filename ]]; then
+  if touch $filename && [[ -f $filename ]]; then
+    write_page > $filename
+  else
+    echo "$PROGNAME can not write file '$filename'" >&2
+    exit 1
+  fi
+else
+  write_page
+fi

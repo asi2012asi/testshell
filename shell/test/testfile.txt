@@ -1,0 +1,13 @@
+     1	#!/bin/bash
+     2	
+     3	# function demo
+     4	
+     5	function function1 {
+     6	  #statements
+     7	  echo "step2"
+     8	  return
+     9	}
+    10	
+    11	echo "step1"
+    12	function1
+    13	echo "step3"

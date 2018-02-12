@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "moni python3"
+TITLE="hello world!"
+python
+python >> _EOF_
+print 1+1
+# print "run python from bash, $TITLE"
+print "run python from bash"
+_EOF_
+# 看来是行不通的

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "test file expression"
+FILE_PATH=~/xiaopeng
+if [[ -f "$FILE_PATH" ]]; then
+  echo "$FILE_PATH is a common file"
+elif [[ -d "$FILE_PATH"  ]]; then
+  echo "$FILE_PATH is a direction"
+elif [[ -r "$FILE_PATH" ]]; then
+  echo "$FILE_PATH is readable" # is readable
+elif [[ -x "$FILE_PATH" ]]; then
+  echo "$FILE_PATH is excutable" #statements
+fi

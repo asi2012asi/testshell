@@ -1,0 +1,19 @@
+#!/bin/bash 
+# 可以在bash后面加-x 表示追踪信息
+# 防御性编程
+ls -l ~/shell/testpp
+dir=~/shell/testpp
+if [[ -d $dir ]]; then
+  set -x #开始追踪
+  if cd $dir ; then
+    echo rm -r * #
+  else
+    echo "can not open $dir"
+    exit 1
+  fi #statements
+  set +x #解除追踪
+else
+  echo "$dir is not a dir"
+  exit 1
+fi
+ls -l ~/shell/testpp

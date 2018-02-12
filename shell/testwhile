@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# test while
+clear
+DELAY=3
+
+while [[ $REPLY != 0 ]]; do
+  echo "
+  please select:
+
+  1. Display system info
+  2. Display disk space
+  3. Display Home space utilization
+  0. Quit
+
+  "
+
+  read -p "pls select [0-3] : "
+
+  if [[ '$REPLY'=~^[0-3]$  ]]; then
+    if [[ $REPLY == 1 ]]; then
+      echo "my HOSTNAME is $HOSTNAME" #statements
+      sleep $DELAY
+      continue
+    elif [[ $REPLY == 2 ]]; then
+      df -h
+      sleep $DELAY
+      continue
+    elif [[ $REPLY == 3 ]]; then
+      du -sh /home #statements
+      sleep $DELAY
+    fi #statements
+  else
+    echo "no! invalid entry, pls input again!"
+    exit 1
+  fi #statements
+done
+echo "exit!"

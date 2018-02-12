@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# test posit-param2
+# 处理集体位置参数
+
+# 测试 $* 和 $@ 可以列出所有参数
+
+print_params(){
+  echo "\$1=$1"
+  echo "\$2=$2"
+  echo "\$3=$3"
+  echo "\$4=$4"
+}
+
+pass_parmas(){
+  echo -e "\n" '$* : '; print_params $*
+  echo -e "\n" '"$*" : '; print_params "$*"
+  echo -e "\n" '$@ : '; print_params $@
+  echo -e "\n" '"$@" : '; print_params "$@"
+}
+
+pass_parmas "word1" "words with space"

@@ -1,0 +1,9 @@
+#!/bin//bash
+
+echo "test read security , accept time out"
+if read -t 10 -sp "pls input your name:" iName;then
+  echo -e "\n security name = $iName"
+else
+  echo -e "\n input time out" >&2 #使用-e的原因是 字符串内包含\n 这是echo的选项
+  exit 1
+fi

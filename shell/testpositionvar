@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# test position param
+
+# posit-param: script to view command line parameters
+# echo "
+# Number of arguments: $#
+# \$0 = $0
+# \$1 = $1
+# \$2 = $2
+# \$3 = $3
+# \$4 = $4
+# \$5 = $5
+# \$6 = $6
+# \$7 = $7
+# \$8 = $8
+# \$9 = $9
+# "
+
+
+# 实例2 使用shift 可以将参数自动玩下移动
+# posit-param2: script to display all arguments
+# count=1
+# while [[ $# -gt 0 ]]; do
+#     echo "Argument $count = $1"
+#     count=$((count + 1))
+#     shift
+# done
+
+
+# 实例3 简单应用
+# file_info: simple file information program
+# PROGNAME=$(basename $0)
+# if [[ -e $1 ]]; then
+#     echo -e "\nFile Type:"
+#     file $1
+#     echo -e "\nFile Status:"
+#     stat $1
+# else
+#     echo "$PROGNAME: usage: $PROGNAME file" >&2
+#     exit 1
+# fi
+
+
+
+# 实例4 在shell函数中使用位置参数
+file_info () {
+  # file_info: function to display file information
+  if [[ -e $1 ]]; then
+      echo -e "\nFile Type:"
+      file $1
+      echo -e "\nFile Status:"
+      stat $1
+  else
+      echo "$FUNCNAME: usage: $FUNCNAME file" >&2
+      return 1
+  fi
+}
+
+file_info ~/shell

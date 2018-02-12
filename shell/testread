@@ -1,0 +1,17 @@
+#!/bin/bash
+
+echo "test read from user"
+echo "please input an integer:"
+read intnum
+if [[ "$intnum"=~^-?[0-9]+$ ]]; then
+  if [[ "$intnum" -eq 0 ]]; then
+    echo "num is zero" #statements
+  elif [[ "$intnum" -lt 0 ]]; then
+    echo "num is nagative"  #statements
+  else
+    echo "num is positive"  #statements fi
+  fi
+fi
+
+read -p "please input a string:" str
+echo "your string is $str"

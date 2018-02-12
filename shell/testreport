@@ -1,0 +1,28 @@
+#!/bin/bash
+
+CURRENT_TIME=$(date +"%x %r %z")
+TIME_STAMP="Generated $CURRENT_TIME by $USER"
+report_uptime(){
+  echo "report_uptime 1"
+  return
+}
+report_disk_space(){
+    echo "report_disk_space 2"
+    df -h
+  return
+}
+report_home_space(){
+  echo "report_home_space 3"
+  return
+}
+
+
+
+cat << _EOF_
+1111
+<P>$CURRENT_TIME</P>
+<H1>$TIME_STAMP</H1>
+$(report_uptime)
+$(report_home_space)
+_EOF_
+report_disk_space

@@ -1,0 +1,23 @@
+#!/bin/bash
+
+echo "test if "
+var=6
+if [ $var = 5 ];then #等号两边需要留下空格 还有[]内部两边需要留下空格
+  echo "var equals 5"
+elif [[ $var < 5 ]]; then
+  echo "var less than 5"#print annoation
+else
+  echo "var bigger than 5"
+fi
+
+
+
+
+
+
+
+
+
+
+
+

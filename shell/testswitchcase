@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# test switch case
+
+DELAY3=3
+
+while true; do
+  echo "
+  please select:
+
+  a. Display system info
+  b. Display disk space
+  c. Display Home space utilization
+  q. Quit
+
+  "
+  read -p "enter selection [abcq] > "
+  case $REPLY in
+    q|Q ) echo "program quit"
+          exit 1
+          ;;
+    a|A ) echo "host name is $HOSTNAME"
+          uptime
+          sleep $DELAY3
+          continue
+          ;;
+    b|B ) echo -e "show disk space :\n"
+          df -h
+          sleep $DELAY3
+          continue
+          ;;
+    c|C ) echo "home space :\n"
+          du -sh ~/xiaopeng
+          sleep $DELAY3
+          continue
+          ;;
+      * ) echo "invalid input ! " >&2
+          sleep $DELAY3
+          continue
+          ;;
+  esac
+  #statements
+done
